@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Image</title>
+</head>
+<body>
+    <h2>Upload an Image</h2>
+    <form method="POST" action="/" enctype="multipart/form-data">
+        <input type="file" name="image_file" accept="image/*" required>
+        <button type="submit">Upload</button>
+    </form>
+
+    <h2>Uploaded Images</h2>
+    <ul>
+        {% for image in images %}
+            <li>
+                <!-- Serve the image directly from Flask's static folder -->
+                <img src="{{ url_for('static', filename='uploads/' + image['filename']) }}" width="200"><br>
+                <span>{{ image['filename'] }}</span>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
